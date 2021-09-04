@@ -19,14 +19,9 @@ __all__: Tuple[str] = (
 class ViewCallback:
     def __init__(
         self,
-        function: Callable,
-        args: List[Any],
-        kwargs: Dict[str, Any]
+        function: Callable
     ):
         self.func = function
-        self.args = args
-        self.kwargs = kwargs
-
 
 
 class CallbackResult:
@@ -51,9 +46,7 @@ class View:
         self.callback = callback
         self.name = assigned_name
 
-    async def execute_callback(self) -> Optional[CallbackResult]:
-        args = self.callback.args
-        kwargs = self.callback.kwargs
+    async def execute_callback(self, *args, **kwargs) -> Optional[CallbackResult]:
 
         _callback = self.callback.func(*args, **kwargs)
         _result = None
