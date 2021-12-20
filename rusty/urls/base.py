@@ -2,13 +2,12 @@ from typing import (
     Coroutine,
     Callable,
     Optional,
-    Tuple
 )
 
 from views import View, ViewCallback
 
 
-__all__: Tuple[str, ...] = (
+__all__ = (
     "path",
 )
 
@@ -25,5 +24,9 @@ def path(endpoint: str, function: Callable[..., Coroutine], *, name: Optional[st
     :rtype: View
     """
     view_callback = ViewCallback(function)
-    view = View(endpoint, view_callback, assigned_name = name)
+    view = View(
+        endpoint,
+        view_callback,
+        assigned_name=name
+    )
     return view
